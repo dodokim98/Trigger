@@ -1,16 +1,3 @@
-const { createServer } = require("https")
-const app = require("./app")
-const { Server } = require("socket.io")
-require("dotenv").config()
-
-const httpsServer = createServer(app)
-const io = new Server(httpsServer, {
-    cors:{
-        origin:"k10c109.p.ssafy.io"
-    }
-})
-
-require("./utils/io")(io)
-httpsServer.listen(process.env.PORT,() => {
-    console.log("server listening on port")
-})
+version https://git-lfs.github.com/spec/v1
+oid sha256:a118cba55884d235bf747fe716f281b25f16172c968ec9002a4bfb903cce4235
+size 868
