@@ -1,10 +1,3 @@
-package com.ssafy.c109.trigger.domain.notice.service;
-
-import com.ssafy.c109.trigger.domain.notice.dto.response.GetNoticeDetailResponse;
-import com.ssafy.c109.trigger.domain.notice.dto.response.GetNoticeListResponse;
-import java.util.List;
-
-public interface NoticeService {
-    List<GetNoticeListResponse> getNoticeList();
-    GetNoticeDetailResponse getNoticeDetail(Long noticeId);
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:4364fc8e84b63c88d542d54673fc5efd2a0a9ea1204194cce816f7d869f290d0
+size 533
