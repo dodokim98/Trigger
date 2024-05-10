@@ -1,18 +1,3 @@
-spring:
-  application:
-    name: Trigger
-
-# PostgreSQL 데이터베이스 설정
-spring.datasource:
-  url: jdbc:postgresql://localhost:5432/springboot
-  username: postgres
-  password: pass
-  driver-class-name: org.postgresql.Driver
-
-# Hibernate 설정 (옵션)
-spring.jpa:
-  properties:
-    hibernate:
-      dialect: org.hibernate.dialect.PostgreSQLDialect
-  hibernate:
-    ddl-auto: create
+version https://git-lfs.github.com/spec/v1
+oid sha256:e6693f9ca790acf561abfae847cb0d9f2533fb23b3e71a689be637a5c79ed879
+size 891
