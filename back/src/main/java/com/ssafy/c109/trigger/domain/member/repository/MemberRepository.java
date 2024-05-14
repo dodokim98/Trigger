@@ -1,12 +1,3 @@
-package com.ssafy.c109.trigger.domain.member.repository;
-
-import com.ssafy.c109.trigger.domain.member.entity.Member;
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.Optional;
-
-public interface MemberRepository extends JpaRepository<Member,Long> {
-    Optional<Member> findByEmail(String email);
-    Optional<Member> findByNickName(String nickname);
-    Optional<Member> findByRefreshToken(String refreshToken);
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:548fab2075f344239f9d968b1a99fdcfa69449d1a075e68c7366bc4d08da928a
+size 1059
