@@ -1,3 +1,28 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:0e79af188cad8015395ef69b7560a31d4b4061efae478943346cb31ecf083e9e
-size 1173
+package com.ssafy.c109.trigger.global.login.service;
+
+import com.ssafy.c109.trigger.domain.member.entity.Member;
+import com.ssafy.c109.trigger.domain.member.repository.MemberRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
+public class LoginService implements UserDetailsService {
+
+    private final MemberRepository memberRepository;
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Member member = memberRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("해당 이메일이 존재하지 않습니다."));
+
+        return org.springframework.security.core.userdetails.User.builder()
+                .username(member.getEmail())
+                .password(member.getPassword())
+                .roles(member.getRole().name())
+                .build();
+    }
+}

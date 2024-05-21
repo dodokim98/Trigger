@@ -1,3 +1,35 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c7b8e3d63957cb82ea00213102509eb1658fa0433670f9daa9f5368c139f6ad2
-size 688
+package com.ssafy.c109.trigger.domain.ranking.entity;
+
+import com.ssafy.c109.trigger.domain.member.entity.Member;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+import java.time.LocalDate;
+
+@Entity
+@Data
+@Builder
+@AllArgsConstructor
+@RequiredArgsConstructor
+public class Ranking {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long rankingId;
+
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    private int isWin;
+
+    private int killCnt;
+
+    private int death;
+
+    private LocalDate createdAt;
+
+    private Long rating;
+}

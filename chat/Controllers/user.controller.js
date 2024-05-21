@@ -1,3 +1,29 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:22d98597247471e3a0abafc2e5840a74402f8437d8a04b800c2983520a7ec842
-size 752
+const User = require("../Models/user")
+const userController = {}
+
+userController.saveUser = async(userName, sid) => { 
+    // 이미 있는 유저인지 확인
+    let user = await User.findOne({ name: userName });
+
+    // 없다면 새로 유저정보 만들기
+    if (!user) {
+        user = new User({
+            name: userName,
+            token: sid,
+            online: true
+        })
+    }
+    // 이미 있는 유저라면 연결정보 token값만 바꿔주자
+    user.token = sid
+    // user.online = true
+    await user.save()
+    return user
+};
+
+userController.checkUser=async(sid)=>{
+    const user = await User.findOne({ token:sid })
+    if (!user) throw new Error("user ont found")
+    return user;
+}
+
+module.exports = userController;

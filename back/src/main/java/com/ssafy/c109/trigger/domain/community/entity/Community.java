@@ -1,3 +1,29 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f05bd5d39cc4aab9502ddfbaf73bf0df21ca7462bd6972935cb8f2a5769ad37f
-size 626
+package com.ssafy.c109.trigger.domain.community.entity;
+
+import com.ssafy.c109.trigger.domain.member.entity.Member;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+import java.time.LocalDate;
+
+@Entity
+@Data
+@RequiredArgsConstructor
+public class Community {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long communityId;
+
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    private String communityTitle;
+
+    private String communityContent;
+
+    private LocalDate communityCreatedAt;
+
+    private int communityViewCnt;
+}

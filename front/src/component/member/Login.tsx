@@ -1,3 +1,47 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:fb4263ca438cea7e5e6a2b58eaa7f5ff95244dcbfa72d11839d6154e07231bec
-size 1481
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { login } from '../../api/login'; // login 함수 임포트
+import './Login.css';
+
+const Login = () => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const token = await login({ email: username, password });
+        if (token) {
+            console.log('Logged in successfully');
+            window.location.href = '/';
+            
+        } else {
+            alert('Login failed');
+        }
+    };
+
+    return (
+        <div className="login-container">
+            <form className="login-form" onSubmit={handleSubmit}>
+                <h1>Login</h1>
+                <input
+                    type="text"
+                    placeholder="Username"
+                    value={username}
+                    onChange={e => setUsername(e.target.value)}
+                    required
+                />
+                <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={e => setPassword(e.target.value)}
+                    required
+                />
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+    );
+};
+
+export default Login;

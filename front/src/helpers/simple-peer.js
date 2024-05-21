@@ -1,3 +1,28 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2ef309c7df39b2361ed57138c31593f9b32f9fef140c7e20d0893123b482f342
-size 854
+import Peer from 'simple-peer'
+
+export default class VideoCall {
+    peer = null
+    init = (stream, initiator) => {
+        this.peer = new Peer({
+            initiator: initiator,
+            stream: stream,
+            trickle: false,
+            reconnectTimer: 1000,
+            iceTransportPolicy: 'relay',
+            config: {
+                iceServers: [
+                    { urls: process.env.REACT_APP_STUN_SERVERS.split(',') },
+                    {
+                        urls: process.env.REACT_APP_TURN_SERVERS.split(','),
+                        username: process.env.REACT_APP_TURN_USERNAME,
+                        credential: process.env.REACT_APP_TURN_CREDENTIAL
+                    },
+                ]
+            }
+        })
+        return this.peer
+    }
+    connect = (otherId) => {
+        this.peer.signal(otherId)
+    }
+} 

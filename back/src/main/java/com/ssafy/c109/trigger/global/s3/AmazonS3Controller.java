@@ -1,3 +1,30 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6901f808aa47831f2d6ba75edcead7fd4e4067a22a29afa0f3805d17e96e6324
-size 1041
+package com.ssafy.c109.trigger.global.s3;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import java.util.List;
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("api/v1/s3/file")
+public class AmazonS3Controller {
+
+    private final AwsS3Service awsS3Service;
+
+    @PostMapping("/uploadFile")
+    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile multipartFile){
+        return ResponseEntity.ok(awsS3Service.uploadFile(multipartFile));
+    }
+
+//    @PostMapping("/uploadFile")
+//    public ResponseEntity<List<String>> uploadFile(List<MultipartFile> multipartFiles){
+//        return ResponseEntity.ok(awsS3Service.uploadFile(multipartFiles));
+//    }
+    @DeleteMapping("/deleteFile")
+    public ResponseEntity<String> deleteFile(@RequestParam String fileName){
+        awsS3Service.deleteFile(fileName);
+        return ResponseEntity.ok(fileName);
+    }
+}
+

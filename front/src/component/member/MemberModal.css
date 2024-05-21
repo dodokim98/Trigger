@@ -1,3 +1,33 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:850d5c7060dedd70deead8d1b7c188bf5c82cd8a8ed1ccff99d1382865a4f840
-size 572
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+  }
+  
+  .modal-content {
+    color: black;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+    position: relative;
+    text-align: center;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
